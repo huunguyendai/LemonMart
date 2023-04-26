@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" fxLayoutGap="8px">
   <button mat-icon-button><mat-icon>menu</mat-icon></button>
   <a mat-button routerLink="/home">
     <mat-icon svgIcon="lemon"></mat-icon>
@@ -8,7 +8,7 @@
   <button mat-mini-fab routerLink="/user/profile" matTooltip="Profile" aria-label="User Profile">
     <mat-icon>account_circle</mat-icon>
   </button>
-  <button mat-icon-button mat-mini-fab routerLink="/user/profile" matTooltip="Logout" aria-label="Logout">
+  <button mat-mini-fab routerLink="/user/logout" matTooltip="Logout" aria-label="Logout">
     <mat-icon>lock_open</mat-icon>
   </button>
 </mat-toolbar>
