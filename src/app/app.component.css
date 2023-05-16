@@ -7,19 +7,24 @@
   left: 0;
   right: 0;
 }
+
 .app-is-mobile .app-toolbar {
   position: fixed;
   z-index: 2;
 }
+
 .app-sidenav-container {
   flex: 1;
 }
+
 .app-is-mobile .app-sidenav-container {
   flex: 1 0 auto;
 }
+
 mat-sidenav {
   width: 200px;
 }
+
 .image-cropper {
   width: 40px;
   height: 40px;

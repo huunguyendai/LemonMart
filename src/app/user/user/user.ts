@@ -37,7 +37,7 @@ export interface IUser {
   },
   phones: IPhone[],
 
-  readonly fullName: string,
+  readonly fullName?: string,
 }
 
 
@@ -61,7 +61,7 @@ export class User implements IUser {
     public phones: IPhone[] = []
   ) { }
 
-  static Build(user: User) {
+  static Build(user: IUser) {
     if (!user) {
       return new User();
     }

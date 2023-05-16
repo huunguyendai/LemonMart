@@ -1,15 +1,33 @@
-<mat-toolbar color="primary" fxLayoutGap="8px">
-  <button mat-icon-button><mat-icon>menu</mat-icon></button>
-  <a mat-button routerLink="/home">
-    <mat-icon svgIcon="lemon"></mat-icon>
-    <span class="mat-h2">LemonMart</span>
-  </a>
-  <span class="flex-spacer"></span>
-  <button mat-mini-fab routerLink="/user/profile" matTooltip="Profile" aria-label="User Profile">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-  <button mat-mini-fab routerLink="/user/logout" matTooltip="Logout" aria-label="Logout">
-    <mat-icon>lock_open</mat-icon>
-  </button>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="app-container">
+  <mat-toolbar color="primary" fxLayoutGap="8px" class="app-toolbar" [class.is-is-mobile]="media.isActive('xs')"
+  *ngIf="{
+  status: authService.authStatus$ | async,
+  user: authService.currentUser$ | async
+} as auth;">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-button routerLink="/home">
+      <mat-icon svgIcon="lemon"></mat-icon>
+      <span class="mat-h2">LemonMart</span>
+    </a>
+    <span class="flex-spacer"></span>
+    <button mat-mini-fab routerLink="/user/profile" matTooltip="Profile" aria-label="User Profile">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button *ngIf="auth?.status?.isAuthenticated" mat-mini-fab routerLink="/user/logout" matTooltip="Logout"
+      aria-label="Logout">
+      <mat-icon>lock_open</mat-icon>
+    </button>
+    <img *ngIf="auth?.user?.picture" class="image-cropper" [src]="auth?.user?.picture" />
+    <mat-icon *ngIf="!auth?.user?.picture">account_circle</mat-icon>
+  </mat-toolbar>
+  <mat-sidenav-container class="app-sidenav-container">
+    <mat-sidenav #sidenav [mode]="media.isActive('xs')? 'over':'side' " [fixedInViewport]="media.isActive('xs')" fixedTopGap="56" [(opened)]="opened">
+      <app-navigation-menu></app-navigation-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
